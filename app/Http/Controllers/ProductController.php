@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\typeProduct;
+use DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -29,7 +31,8 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view('product.create');
+        $typeProduct = DB::table('type_products')->get();
+        return view('product.create',compact('typeProduct'));
     }
 
     /**

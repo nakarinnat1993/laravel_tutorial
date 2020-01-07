@@ -20,12 +20,15 @@ Create product
     </div>
     <label>ประเภท</label>
     <select class="form-control" name="typename">
-        <option value="1">เครื่องดื่ม</option>
-        <option value="2">ของใช้ไฟฟ้า</option>
-        <option value="3">เครื่องเขียน</option>
-        <option value="4">กระเป๋า</option>
+        @foreach ($typeProduct as $item)
+
+        <option value="{{$item->id}}">{{$item->type_name}}</option>
+
+        @endforeach
+
     </select>
     <br>
+
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="บันทึก" />
     </div>

@@ -22,7 +22,7 @@
 <div class="row">
     <div class="col-sm-12">
         <h2>แก้ไขข้อมูล</h2>
-        <form method="POST" action="{{action('UserController@update', $id)}}">
+        <form method="POST" action="{{action('UserController@update', $id)}}" enctype="multipart/form-data">
             {{csrf_field()}}
             <input type="hidden" name="_method" value="PATCH" />
             <div class="form-group">
@@ -34,6 +34,10 @@
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
                     value="{{$user->email}}" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="file_image">Image</label>
+                <input type="file"  id="file_image" name="file_image" >
             </div>
             <button type="submit" class="btn btn-warning">Update</button>
         </form>

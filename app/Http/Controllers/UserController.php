@@ -107,10 +107,20 @@ class UserController extends Controller
             ]
         );
 
+
         $user = User::find($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
+
+        if($image = $request->file('file_image')){
+            $new_name = time() . '.' . $image->getClientOriginalExtension();
+            $new_file = 'images/' . date("Y") . '/' . date("m") . '/' . $new_name;
+            $image->move(public_path('images/' . date("Y") . '/' . date("m")), $new_name);
+            $user->images = $new_file;
+        }
+
         $user->save();
+
         return redirect()->route('user.index')->with('success', 'อัพเดทเรียบร้อย');
     }
 

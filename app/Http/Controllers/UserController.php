@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
-Use View;
-Use PDF;
+use Illuminate\Http\Request;
+use PDF;
+use View;
 
 class UserController extends Controller
 {
@@ -46,7 +46,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'file_image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048'
+            'file_image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
         $image = $request->file('file_image');
@@ -58,9 +58,11 @@ class UserController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => $request->get('password'),
-            'images' => $new_file
+            'images' => $new_file,
         ]);
         $user->save();
+
+        $request->flash();
         return redirect()->route('user.index')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 
@@ -103,16 +105,15 @@ class UserController extends Controller
             $request,
             [
                 'name' => 'required',
-                'email' => 'required'
+                'email' => 'required',
             ]
         );
-
 
         $user = User::find($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
 
-        if($image = $request->file('file_image')){
+        if ($image = $request->file('file_image')) {
             $new_name = time() . '.' . $image->getClientOriginalExtension();
             $new_file = 'images/' . date("Y") . '/' . date("m") . '/' . $new_name;
             $image->move(public_path('images/' . date("Y") . '/' . date("m")), $new_name);

@@ -26,12 +26,13 @@
             {{csrf_field()}}
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"
+                    value="{{old('name')}}">
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                    placeholder="Enter email">
+                    placeholder="Enter email" value="{{old('email')}}">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -39,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label for="file_image">Image</label>
-                <input type="file"  id="file_image" name="file_image" >
+                <input type="file" id="file_image" name="file_image">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

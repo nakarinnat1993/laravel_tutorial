@@ -34,6 +34,10 @@ Route::resource('product', 'ProductController');
 Route::get('multifile','MultiFileController@index');
 Route::post('multifile','MultiFileController@upload')->name('upload');
 
+Route::get('export', 'ExcelController@export')->name('export');
+Route::get('importExportView', 'ExcelController@importExportView');
+Route::post('import', 'ExcelController@import')->name('import');
+
 
 // Route::get('/upload','UploadController@index');
 // Route::post('/upload','UploadController@upload');

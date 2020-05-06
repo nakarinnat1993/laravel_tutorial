@@ -8,7 +8,7 @@ Show product
 @section('content')
 <h2 align="center">Relation Database</h2>
 <br>
-<a href="{{route('product.create')}}" class="btn btn-success">เพิ่มข้อมูล</a>
+<a href="{{route('product.create')}}" class="btn btn-info">เพิ่มข้อมูล</a>
 <div class="row">
     <div class="col-md-12">
         <br><a href=""></a>
@@ -34,5 +34,15 @@ Show product
         </table>
         {{$products->links()}}
     </div>
+</div>
+<div class="card-body">
+    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" >
+        <br>
+        <br>
+        <button class="btn btn-success">Import Data</button>
+        <a class="btn btn-warning" href="{{ route('export') }}">Export Data</a>
+    </form>
 </div>
 @endsection

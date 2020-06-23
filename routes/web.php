@@ -39,5 +39,15 @@ Route::get('importExportView', 'ExcelController@importExportView');
 Route::post('import', 'ExcelController@import')->name('import');
 
 
+Route::group(['prefix' => 'pusher'], function () {
+    Route::get('/',function(){
+        return view('pusher.index');
+    });
+    Route::get('like/{name}', function ($name) {
+        event(new App\Events\StatusLiked($name));
+        return "$name Like message.";
+    });
+});
+
 // Route::get('/upload','UploadController@index');
 // Route::post('/upload','UploadController@upload');
